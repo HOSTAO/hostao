@@ -1,0 +1,71 @@
+export const brand = {
+  primary: '#3B82F6',
+  secondary: '#1D4ED8',
+  accent: '#06B6D4',
+  darkBg: '#0B0F14',
+  cardBg: '#111827',
+  border: 'rgba(59,130,246,0.15)',
+  text: '#F9FAFB',
+  muted: '#9CA3AF',
+  orderUrl: 'https://my.hostao.com/order',
+  loginUrl: 'https://my.hostao.com/login',
+  resellerOrderUrl: 'https://my.hostao.com/order/reseller',
+  siteUrl: 'https://hostao.com',
+}
+
+export const navItems = [
+  {
+    label: 'Hosting',
+    dropdown: [
+      { label: 'Shared Hosting', href: '/shared-hosting' },
+      { label: 'Multi Location Hosting', href: '/shared-hosting' },
+    ],
+  },
+  {
+    label: 'Reseller',
+    dropdown: [
+      { label: 'Master Reseller', href: '/reseller-hosting' },
+      { label: 'Budget Reseller', href: '/reseller-hosting' },
+      { label: 'USA Reseller', href: '/reseller-hosting' },
+      { label: 'Europe/UK Reseller', href: '/reseller-hosting' },
+      { label: 'Singapore Reseller', href: '/reseller-hosting' },
+      { label: 'Netherlands Reseller', href: '/reseller-hosting' },
+      { label: 'German Reseller', href: '/reseller-hosting' },
+      { label: 'Canada Reseller', href: '/reseller-hosting' },
+      { label: 'Asia Indian Reseller', href: '/reseller-hosting' },
+      { label: 'Asia China Reseller', href: '/reseller-hosting' },
+      { label: 'Asia Japan Reseller', href: '/reseller-hosting' },
+      { label: 'Australian Reseller', href: '/reseller-hosting' },
+      { label: 'South Africa Reseller', href: '/reseller-hosting' },
+      { label: 'Multi Reseller Hosting', href: '/reseller-hosting' },
+    ],
+  },
+  {
+    label: 'VPS & Dedicated',
+    dropdown: [
+      { label: 'USA VPS', href: '/vps' },
+      { label: 'Singapore VPS', href: '/vps' },
+      { label: 'UK Europe VPS', href: '/vps' },
+      { label: 'USA Dedicated', href: '/dedicated' },
+      { label: 'Singapore Dedicated', href: '/dedicated' },
+      { label: 'UK Dedicated', href: '/dedicated' },
+    ],
+  },
+  {
+    label: 'Features',
+    dropdown: [
+      { label: 'Standard Features', href: '/features' },
+      { label: 'Domain Reseller', href: '/features' },
+      { label: 'Merchant Account', href: '/features' },
+      { label: 'SSL Reseller', href: '/features' },
+      { label: 'CloudFlare CDN', href: '/features' },
+      { label: 'Overselling Enabled', href: '/features' },
+      { label: 'FREE WHMCS', href: '/features' },
+      { label: 'Web Builder', href: '/features' },
+      { label: 'Softaculous', href: '/features' },
+      { label: 'SEO Hosting', href: '/features' },
+    ],
+  },
+  { label: 'Blog', href: '/blog' },
+  { label: 'Contact', href: '/contact' },
+]

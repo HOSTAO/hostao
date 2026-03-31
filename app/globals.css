@@ -1,0 +1,149 @@
+@import "tailwindcss";
+
+/* System fonts matching original site */
+@theme {
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Oxygen-Sans", Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+  
+  /* Exact colors from original hostao.com */
+  --color-primary: #046bd2;
+  --color-primary-dark: #045cb4;
+  --color-text-dark: #0c1434;
+  --color-text-medium: #1f2b4d;
+  --color-text-body: #334155;
+  --color-background: #F0F5FA;
+  --color-background-light: #f8fbff;
+  --color-background-blue: #d9ecff;
+  --color-background-blue-light: #e6f2ff;
+  --color-white: #FFFFFF;
+  --color-border: #e5e7eb;
+  --color-yellow: #fbbf24;
+  --color-red: #ef4444;
+}
+
+html { 
+  scroll-behavior: smooth; 
+  font-size: 100%;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Oxygen-Sans", Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.65em;
+  -webkit-font-smoothing: antialiased;
+  color: #334155;
+  background: #F0F5FA;
+}
+
+/* Exact color utilities from original hostao.com */
+.text-hostao-primary  { color: #046bd2; }
+.bg-hostao-primary    { background-color: #046bd2; }
+.border-hostao-primary{ border-color: #046bd2; }
+
+.text-hostao-primary-dark  { color: #045cb4; }
+.bg-hostao-primary-dark    { background-color: #045cb4; }
+
+.text-hostao-dark  { color: #1e293b; }
+.bg-hostao-dark    { background-color: #1e293b; }
+
+.text-hostao-medium  { color: #334155; }
+.bg-hostao-medium    { background-color: #334155; }
+
+.bg-hostao-light     { background-color: #F0F5FA; }
+
+.text-hostao-white  { color: #FFFFFF; }
+.bg-hostao-white    { background-color: #FFFFFF; }
+
+/* Buttons matching original hostao.com */
+.btn-hostao-primary {
+  display: inline-flex; align-items: center; justify-content: center;
+  background-color: #046bd2; color: #fff;
+  font-weight: 500; font-size: 1rem; line-height: 1em;
+  padding: 15px 30px; border-radius: 4px;
+  transition: background-color .2s, border-color .2s;
+  cursor: pointer; border: none; text-decoration: none;
+}
+.btn-hostao-primary:hover { 
+  background-color: #045cb4; 
+  border-color: #045cb4;
+  color: #fff;
+}
+
+.btn-hostao-outline {
+  display: inline-flex; align-items: center; justify-content: center;
+  border: 1px solid #046bd2; color: #046bd2; background: transparent;
+  font-weight: 500; font-size: 1rem; line-height: 1em;
+  padding: 15px 30px; border-radius: 4px;
+  transition: all .2s; cursor: pointer;
+  text-decoration: none;
+}
+.btn-hostao-outline:hover { 
+  background-color: #045cb4; 
+  border-color: #045cb4;
+  color: #fff; 
+}
+
+/* Form elements matching original */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="search"],
+select,
+textarea {
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+  width: 100%;
+  padding: 12px 16px;
+  border-radius: 4px;
+  box-shadow: 0px 1px 2px 0px rgba(0,0,0,0.05);
+  color: #475569;
+  border: 1px solid #D1D5DB;
+  background: #FFFFFF;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+input[type="search"]:focus,
+select:focus,
+textarea:focus {
+  border-color: #046BD2;
+  box-shadow: none;
+  outline: none;
+  color: #475569;
+}
+
+/* Card hover lift */
+.card-hover { transition: transform .2s ease, box-shadow .2s ease; }
+.card-hover:hover { transform: translateY(-3px); box-shadow: 0 12px 32px rgba(0,86,167,.12); }
+
+/* Pricing card popular ring */
+.plan-popular { box-shadow: 0 0 0 3px #0056A7, 0 12px 40px rgba(0,86,167,.18); }
+
+/* Section label pill */
+.section-label {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: #EFF6FF; color: #0056A7;
+  font-size: .7rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+  padding: .35rem 1rem; border-radius: 999px; margin-bottom: 1rem;
+}
+
+/* Gradient text */
+.text-gradient { background: linear-gradient(135deg,#0056A7,#0071FB); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+
+::selection { background:#DBEAFE; color:#1d4ed8; }
+::-webkit-scrollbar { width:6px; }
+::-webkit-scrollbar-thumb { background:#d1d5db; border-radius:3px; }
+
+/* Homepage hero */
+.hero-gradient {
+  background: linear-gradient(135deg, #0056A7 0%, #0071FB 45%, #171734 100%);
+}
+
+/* Hide legacy domain-extension strip image to avoid duplicate TLD row under search */
+img[alt="Domain Extensions"] {
+  display: none !important;
+}
+

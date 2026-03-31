@@ -1,0 +1,38 @@
+{
+  "name": "hostao-web",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint",
+    "generate:importmap": "payload generate:importmap"
+  },
+  "dependencies": {
+    "@libsql/client": "^0.17.0",
+    "@payloadcms/db-sqlite": "^3.78.0",
+    "@payloadcms/next": "^3.78.0",
+    "@payloadcms/plugin-seo": "^3.78.0",
+    "@payloadcms/richtext-lexical": "^3.78.0",
+    "@tailwindcss/typography": "^0.5.19",
+    "appwrite": "^24.0.0",
+    "graphql": "^16.13.1",
+    "next": "^15.5.12",
+    "node-appwrite": "^23.0.0",
+    "payload": "^3.78.0",
+    "react": "19.2.3",
+    "react-dom": "19.2.3",
+    "sharp": "^0.34.5"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "^15.5.12",
+    "tailwindcss": "^4",
+    "typescript": "^5"
+  }
+}
