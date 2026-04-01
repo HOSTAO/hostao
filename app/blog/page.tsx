@@ -1,6 +1,8 @@
 export const dynamic = "force-static";
 export const revalidate = 86400; // revalidate once per day
 
+import fs from "fs";
+import path from "path";
 import Link from "next/link";
 import type { Metadata } from "next";
 
@@ -399,43 +401,13 @@ async function fetchWpPosts(): Promise<BlogCard[]> {
   }
 }
 
-// ALL blog posts from original hostao.com (31 total) - ensuring zero broken links
-const AVAILABLE_POST_SLUGS = new Set([
-  "shared-vs-reseller-hosting-which-is-right-for-you",
-  "choosing-the-right-hosting-plan-for-startup",
-  "maximizing-profit-how-to-build-a-successful-hosting-business-with-reseller-hosting",
-  "the-most-expensive-domain-sales-of-all-time",
-  "the-dos-and-donts-of-reseller-hosting-business",
-  "singapore-vps-hosting-why-choose-it-for-your-business",
-  "get-started-with-unlimited-reseller-hosting-and-free-whmcs",
-  "best-wordpress-hosting-providers-2024",
-  "website-speed-optimization-ultimate-guide",
-  "ssl-certificates-explained-beginners-guide",
-  "scaling-an-e-commerce-startup-smoothly-on-hostaos-singapore-vps",
-  "scaling-your-business-with-reseller-hosting-south-africa-edition",
-  "switch-to-openphone",
-  "rank-math-vs-yoast-seo-plugin-review",
-  "top-10-security-features-your-website-needs-in-2025",
-  "ultimate-guide-to-reseller-hosting-types",
-  "5-simple-seo-checklist-for-new-websites",
-  "how-to-start-making-money-with-invideo-1",
-  "best-hosting-plan-for-websites-how-to-measure-in-2022",
-  "search-engine-optimization",
-  "why-its-important-to-reevaluate-your-business-goals-regularly",
-  "the-state-of-cloud-computing-in-europe-and-the-uk",
-  "which-one-is-best-for-your-project-rust-vs-python",
-  "hostao-makes-a-powerful-habitat-for-your-web-world-goodfirms",
-  "create-a-website-and-earn-money-with-these-simple-tips",
-  "10-factors-for-choosing-wordpress-hosting-plans",
-  "how-to-fix-the-aw-snap-error-in-chrome-8-methods",
-  "recover-a-stolen-domain-how-to-regain-your-hijacked-domain",
-  "how-to-resolve-domain-disputes-understanding-udrp",
-  "domain-name-extensions",
-  "pabbly-connect-lifetime-deal-grow-business-with-the-best-automation-hostao",
-  "website-with-top-wordpress-tricks",
-  "resolving-the-most-common-wordpress-issues",
-  "why-use-laravel-understanding-the-benefits-of-the-framework",
-]);
+// All blog posts from posts-clean.json — auto-synced, zero broken links
+const _allLocalPosts: Array<{slug: string}> = (() => {
+  try {
+    return JSON.parse(fs.readFileSync(path.join(process.cwd(), "posts-data", "posts-clean.json"), "utf-8"));
+  } catch { return []; }
+})();
+const AVAILABLE_POST_SLUGS = new Set(_allLocalPosts.map((p) => p.slug));
 
 export default async function BlogPage() {
   const wpPosts = await fetchWpPosts();
