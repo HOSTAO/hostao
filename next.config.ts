@@ -2,6 +2,10 @@ import { withPayload } from "@payloadcms/next/withPayload";
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  experimental: {
+    workerThreads: false,
+    cpus: 1,
+  },
   reactStrictMode: false, // Disable strict mode to prevent double rendering
   images: {
     remotePatterns: [
