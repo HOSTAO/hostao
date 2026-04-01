@@ -147,3 +147,22 @@ img[alt="Domain Extensions"] {
   display: none !important;
 }
 
+
+/* Blog post content styles */
+.blog-post-content { color: #374151; line-height: 1.85; font-size: 1rem; }
+.blog-post-content h1 { font-size: 2rem; font-weight: 800; color: #111827; margin: 2rem 0 1rem; line-height: 1.25; }
+.blog-post-content h2 { font-size: 1.5rem; font-weight: 700; color: #111827; margin: 2rem 0 0.75rem; border-bottom: 1px solid #e5e7eb; padding-bottom: 0.5rem; }
+.blog-post-content h3 { font-size: 1.2rem; font-weight: 700; color: #1f2937; margin: 1.5rem 0 0.5rem; }
+.blog-post-content h4 { font-size: 1.05rem; font-weight: 700; color: #1f2937; margin: 1.25rem 0 0.5rem; }
+.blog-post-content p { margin: 0 0 1.25rem; color: #374151; }
+.blog-post-content ul, .blog-post-content ol { margin: 0 0 1.25rem 1.5rem; }
+.blog-post-content li { margin-bottom: 0.5rem; color: #374151; }
+.blog-post-content strong { font-weight: 700; color: #111827; }
+.blog-post-content em { font-style: italic; }
+.blog-post-content code { background: #f3f4f6; color: #be185d; padding: 0.15em 0.4em; border-radius: 4px; font-size: 0.9em; font-family: monospace; }
+.blog-post-content blockquote { border-left: 4px solid #046bd2; padding-left: 1rem; color: #6b7280; margin: 1.5rem 0; font-style: italic; }
+.blog-post-content hr { border: none; border-top: 1px solid #e5e7eb; margin: 2rem 0; }
+.blog-post-content a { color: #046bd2; text-decoration: underline; }
+.blog-post-content table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.9rem; }
+.blog-post-content th, .blog-post-content td { border: 1px solid #e5e7eb; padding: 0.6rem 0.9rem; text-align: left; }
+.blog-post-content th { background: #f9fafb; font-weight: 700; }

@@ -520,7 +520,7 @@ export default async function BlogPage() {
                       </Link>
                     </div>
                     <Link
-                      href={`/${p.slug}`}
+                      href={`/blog/${p.slug}/`}
                       className="text-[#0056A7] text-xs font-semibold hover:underline"
                     >
                       Read →
