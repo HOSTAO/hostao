@@ -64,7 +64,6 @@ const usefulLinks = [
   { label: "Refund Policy",     href: "/refund-policy" },
 ];
 
-/* Hostao Ecosystem — all brands */
 const ecosystemLinks = [
   { label: "Hostao",          href: "https://hostao.com",             icon: "🌐", desc: "Web Hosting" },
   { label: "AutoChat",        href: "https://autochat.in",            icon: "💬", desc: "WhatsApp Automation" },
@@ -93,16 +92,38 @@ function FLink({ href, label, external }: { href: string; label: string; externa
     : <Link href={href} className={cls}>{dot}{label}</Link>;
 }
 
-function ColHead({ children }: { children: React.ReactNode }) {
+/* Accordion column — collapses on mobile, always open on lg+ */
+function AccordionCol({ title, children }: { title: string; children: React.ReactNode }) {
+  const [open, setOpen] = useState(false);
   return (
-    <div className="mb-4">
-      <h3 className="text-white font-bold text-[11px] uppercase tracking-widest mb-2">{children}</h3>
-      <div className="h-px" style={{ background: "linear-gradient(90deg,#046bd2,transparent)" }} />
+    <div className="border-b border-white/5 lg:border-none">
+      {/* Mobile toggle header */}
+      <button
+        className="w-full flex items-center justify-between py-3 lg:hidden"
+        onClick={() => setOpen(o => !o)}
+      >
+        <span className="text-white font-bold text-[11px] uppercase tracking-widest">{title}</span>
+        <svg
+          className={`w-4 h-4 text-[#046bd2] transition-transform duration-200 ${open ? "rotate-180" : ""}`}
+          fill="none" stroke="currentColor" viewBox="0 0 24 24"
+        >
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+        </svg>
+      </button>
+      {/* Desktop always-visible header */}
+      <div className="hidden lg:block mb-4">
+        <h3 className="text-white font-bold text-[11px] uppercase tracking-widest mb-2">{title}</h3>
+        <div className="h-px" style={{ background: "linear-gradient(90deg,#046bd2,transparent)" }} />
+      </div>
+      {/* Content */}
+      <div className={`overflow-hidden transition-all duration-300 lg:!max-h-none lg:!opacity-100 ${open ? "max-h-[600px] opacity-100 pb-4" : "max-h-0 opacity-0 lg:opacity-100"}`}>
+        {children}
+      </div>
     </div>
   );
 }
 
-/* ─── Newsletter form using BestEmail API ────────────────── */
+/* ─── Newsletter form ────────────────────────────────────── */
 function NewsletterForm() {
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
@@ -113,7 +134,6 @@ function NewsletterForm() {
     if (!email) return;
     setStatus("loading");
     try {
-      // Submit to BestEmail platform public form API
       const res = await fetch("https://bestemail-platform.vercel.app/api/forms/hostao-newsletter/submit", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -124,7 +144,6 @@ function NewsletterForm() {
         setMsg("🎉 Subscribed! Watch your inbox for great deals.");
         setEmail("");
       } else {
-        // Fallback to sendfox
         const f = document.createElement("form");
         f.method = "post"; f.action = "https://sendfox.com/form/m5wz9l/3ed72p";
         const inp = document.createElement("input");
@@ -143,9 +162,9 @@ function NewsletterForm() {
   return (
     <div>
       {status === "success" ? (
-        <p className="text-green-400 text-sm font-medium">{msg}</p>
+        <p className="text-green-400 text-sm font-medium text-center md:text-left">{msg}</p>
       ) : (
-        <form onSubmit={handleSubmit} className="flex gap-2 w-full">
+        <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-2 w-full">
           <input
             type="email"
             value={email}
@@ -153,12 +172,12 @@ function NewsletterForm() {
             placeholder="Your email address"
             required
             disabled={status === "loading"}
-            className="flex-1 px-4 py-2.5 rounded-lg text-sm text-gray-900 outline-none focus:ring-2 focus:ring-white/50 bg-white disabled:opacity-60"
+            className="flex-1 px-4 py-3 rounded-lg text-sm text-gray-900 outline-none focus:ring-2 focus:ring-white/50 bg-white disabled:opacity-60 w-full"
           />
           <button
             type="submit"
             disabled={status === "loading"}
-            className="bg-white text-[#046bd2] font-bold px-5 py-2.5 rounded-lg text-sm hover:bg-blue-50 active:scale-95 transition-all shadow-lg whitespace-nowrap disabled:opacity-60"
+            className="bg-white text-[#046bd2] font-bold px-6 py-3 rounded-lg text-sm hover:bg-blue-50 active:scale-95 transition-all shadow-lg whitespace-nowrap disabled:opacity-60 w-full sm:w-auto"
           >
             {status === "loading" ? "..." : "Subscribe"}
           </button>
@@ -182,11 +201,10 @@ export default function Footer() {
 
       {/* ── Newsletter bar ── */}
       <div className="relative border-b border-white/10 overflow-hidden">
-        {/* Glowing stripe bg */}
         <div className="absolute inset-0" style={{ background: "linear-gradient(100deg,#0356a8 0%,#046bd2 50%,#0047b3 100%)" }} />
         <div className="absolute inset-0 opacity-20" style={{ backgroundImage: "radial-gradient(circle at 20% 50%,rgba(255,255,255,0.15),transparent 60%),radial-gradient(circle at 80% 50%,rgba(255,255,255,0.1),transparent 60%)" }} />
 
-        <div className="relative max-w-7xl mx-auto px-4 py-6 flex flex-col md:flex-row items-center justify-between gap-5">
+        <div className="relative max-w-7xl mx-auto px-4 py-6 flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="text-center md:text-left">
             <h3 className="text-white font-extrabold text-lg tracking-tight">
               ✉️ Get Exclusive Hosting Deals
@@ -203,13 +221,13 @@ export default function Footer() {
       <div className="border-b border-white/8" style={{ background: "rgba(4,107,210,0.06)" }}>
         <div className="max-w-7xl mx-auto px-4 py-6">
           <p className="text-[#4b5563] text-[10px] uppercase tracking-widest text-center mb-4">Our Brands &amp; Ecosystem</p>
-          <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-3">
+          <div className="grid grid-cols-4 sm:grid-cols-4 lg:grid-cols-8 gap-2 sm:gap-3">
             {ecosystemLinks.map((l) => (
               <a key={l.label} href={l.href} target="_blank" rel="noopener noreferrer"
-                className="group flex flex-col items-center gap-1.5 p-3 rounded-xl border border-white/6 hover:border-[#046bd2]/50 hover:bg-[#046bd2]/10 transition-all duration-200 text-center">
-                <span className="text-2xl leading-none">{l.icon}</span>
-                <span className="text-white text-xs font-semibold group-hover:text-[#046bd2] transition-colors leading-tight">{l.label}</span>
-                <span className="text-[#4b5563] text-[10px] leading-tight">{l.desc}</span>
+                className="group flex flex-col items-center gap-1 sm:gap-1.5 p-2 sm:p-3 rounded-xl border border-white/6 hover:border-[#046bd2]/50 hover:bg-[#046bd2]/10 transition-all duration-200 text-center">
+                <span className="text-xl sm:text-2xl leading-none">{l.icon}</span>
+                <span className="text-white text-[10px] sm:text-xs font-semibold group-hover:text-[#046bd2] transition-colors leading-tight">{l.label}</span>
+                <span className="text-[#4b5563] text-[9px] sm:text-[10px] leading-tight hidden sm:block">{l.desc}</span>
               </a>
             ))}
           </div>
@@ -217,11 +235,11 @@ export default function Footer() {
       </div>
 
       {/* ── Main grid ── */}
-      <div className="relative max-w-7xl mx-auto px-4 pt-12 pb-10">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-8 lg:gap-5">
+      <div className="relative max-w-7xl mx-auto px-4 pt-8 pb-4 lg:pt-12 lg:pb-10">
+        <div className="grid grid-cols-1 lg:grid-cols-6 gap-0 lg:gap-5">
 
-          {/* Col 1+2 – Brand */}
-          <div className="lg:col-span-2 space-y-5">
+          {/* Brand column — always full width on mobile */}
+          <div className="lg:col-span-2 space-y-5 pb-6 mb-4 border-b border-white/8 lg:border-none lg:mb-0 lg:pb-0">
             <Link href="/">
               <Image src="/images/Dark-new.png" alt="Hostao" width={150} height={44} className="h-10 w-auto" unoptimized />
             </Link>
@@ -232,18 +250,24 @@ export default function Footer() {
 
             {/* Contact */}
             <div className="space-y-2">
-              {[
-                { href: "tel:+13237447383", text: "+1 (323) 744-7383  ·  +91 9647 000 111", iconPath: "M497.39 361.8l-112-48a24 24 0 0 0-28 6.9l-49.6 60.6A370.66 370.66 0 0 1 130.6 204.11l60.6-49.6a23.94 23.94 0 0 0 6.9-28l-48-112A24.16 24.16 0 0 0 122.6.61l-104 24A24 24 0 0 0 0 48c0 256.5 207.9 464 464 464a24 24 0 0 0 23.4-18.6l24-104a24.29 24.29 0 0 0-14.01-27.6z" },
-                { href: "mailto:contact@hostao.com", text: "contact@hostao.com", iconPath: "M502.3 190.8c3.9-3.1 9.7-.2 9.7 4.7V400c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V195.6c0-5 5.7-7.8 9.7-4.7 22.4 17.4 52.1 39.5 154.1 113.6 21.1 15.4 56.7 47.8 92.2 47.6 35.7.3 72-32.8 92.3-47.6 102-74.1 131.6-96.3 154-113.7zM256 320c23.2.4 56.6-29.2 73.4-41.4 132.7-96.3 142.8-104.7 173.4-128.7 5.8-4.5 9.2-11.5 9.2-18.9v-19c0-26.5-21.5-48-48-48H48C21.5 64 0 85.5 0 112v19c0 7.4 3.4 14.3 9.2 18.9 30.6 23.9 40.7 32.4 173.4 128.7 16.8 12.2 50.2 41.8 73.4 41.4z" },
-              ].map((c) => (
-                <a key={c.href} href={c.href}
-                  className="flex items-center gap-2 text-[#7a8599] hover:text-white text-xs transition-colors group">
-                  <span className="w-6 h-6 rounded-full bg-[#046bd2]/15 flex items-center justify-center flex-shrink-0 group-hover:bg-[#046bd2]/30 transition-colors">
-                    <svg className="w-3 h-3 text-[#046bd2]" fill="currentColor" viewBox="0 0 512 512"><path d={c.iconPath} /></svg>
-                  </span>
-                  {c.text}
-                </a>
-              ))}
+              <a href="tel:+13237447383"
+                className="flex items-start gap-2 text-[#7a8599] hover:text-white text-xs transition-colors group">
+                <span className="w-6 h-6 rounded-full bg-[#046bd2]/15 flex items-center justify-center flex-shrink-0 mt-0.5 group-hover:bg-[#046bd2]/30 transition-colors">
+                  <svg className="w-3 h-3 text-[#046bd2]" fill="currentColor" viewBox="0 0 512 512">
+                    <path d="M497.39 361.8l-112-48a24 24 0 0 0-28 6.9l-49.6 60.6A370.66 370.66 0 0 1 130.6 204.11l60.6-49.6a23.94 23.94 0 0 0 6.9-28l-48-112A24.16 24.16 0 0 0 122.6.61l-104 24A24 24 0 0 0 0 48c0 256.5 207.9 464 464 464a24 24 0 0 0 23.4-18.6l24-104a24.29 24.29 0 0 0-14.01-27.6z" />
+                  </svg>
+                </span>
+                <span className="break-all">+1 (323) 744-7383<br />+91 9647 000 111</span>
+              </a>
+              <a href="mailto:contact@hostao.com"
+                className="flex items-center gap-2 text-[#7a8599] hover:text-white text-xs transition-colors group">
+                <span className="w-6 h-6 rounded-full bg-[#046bd2]/15 flex items-center justify-center flex-shrink-0 group-hover:bg-[#046bd2]/30 transition-colors">
+                  <svg className="w-3 h-3 text-[#046bd2]" fill="currentColor" viewBox="0 0 512 512">
+                    <path d="M502.3 190.8c3.9-3.1 9.7-.2 9.7 4.7V400c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V195.6c0-5 5.7-7.8 9.7-4.7 22.4 17.4 52.1 39.5 154.1 113.6 21.1 15.4 56.7 47.8 92.2 47.6 35.7.3 72-32.8 92.3-47.6 102-74.1 131.6-96.3 154-113.7zM256 320c23.2.4 56.6-29.2 73.4-41.4 132.7-96.3 142.8-104.7 173.4-128.7 5.8-4.5 9.2-11.5 9.2-18.9v-19c0-26.5-21.5-48-48-48H48C21.5 64 0 85.5 0 112v19c0 7.4 3.4 14.3 9.2 18.9 30.6 23.9 40.7 32.4 173.4 128.7 16.8 12.2 50.2 41.8 73.4 41.4z" />
+                  </svg>
+                </span>
+                contact@hostao.com
+              </a>
               <p className="text-[#4b5563] text-xs pl-8">30 N Gould St Ste R, Sheridan, WY 82801</p>
             </div>
 
@@ -260,7 +284,7 @@ export default function Footer() {
               ))}
             </div>
 
-            {/* Trust badges card */}
+            {/* Trust badges */}
             <div className="rounded-xl border border-white/8 p-4 space-y-3" style={{ background: "rgba(255,255,255,0.03)" }}>
               <div className="flex flex-wrap items-center gap-4">
                 <img src="https://hostao.com/wp-content/uploads/2024/01/Hostao-cloud-partner.png"
@@ -270,7 +294,6 @@ export default function Footer() {
               </div>
               <img src="https://hostao.com/wp-content/uploads/elementor/thumbs/payment_gateways_imgs-qv7a5kp32o03eq2wwx8d2n4m6u09euxwjsyk058kqo.png"
                 alt="Payment Gateways" className="h-7 w-auto opacity-70 hover:opacity-100 transition-opacity" />
-              {/* GDPR — larger */}
               <a href="https://gdpr.euverify.com/verify/11172608-cbe5-4070-b46a-678b95ffb83f"
                 target="_blank" rel="noopener noreferrer" className="inline-block">
                 <img src="https://gdpr.euverify.com/images/BOTH.png" alt="GDPR Compliant"
@@ -288,7 +311,6 @@ export default function Footer() {
                 <span className="absolute -bottom-0.5 -right-0.5 w-3 h-3 bg-green-400 rounded-full border-2"
                   style={{ borderColor: "#050b18" }} />
               </div>
-
               <div>
                 <p className="text-white text-xs font-semibold">Tao — AI Assistant 🤖</p>
                 <p className="text-[#7a8599] text-xs mt-0.5 group-hover:text-[#9ca3af] transition-colors">
@@ -298,43 +320,42 @@ export default function Footer() {
             </a>
           </div>
 
-          {/* Reseller Hosting */}
-          <div>
-            <ColHead>Reseller Hosting</ColHead>
-            <ul className="space-y-1">{resellerLinks.map(l => <li key={l.label}><FLink {...l} /></li>)}</ul>
-          </div>
+          {/* Link columns — accordion on mobile, normal on desktop */}
+          <div className="lg:col-span-4 grid grid-cols-1 lg:grid-cols-4 lg:gap-5">
 
-          {/* Dedicated + VPS + Brands */}
-          <div className="space-y-6">
+            {/* Reseller Hosting */}
+            <AccordionCol title="Reseller Hosting">
+              <ul className="space-y-1">{resellerLinks.map(l => <li key={l.label}><FLink {...l} /></li>)}</ul>
+            </AccordionCol>
+
+            {/* Dedicated + VPS */}
             <div>
-              <ColHead>Dedicated Hosting</ColHead>
-              <ul className="space-y-1">{dedicatedLinks.map(l => <li key={l.label}><FLink {...l} /></li>)}</ul>
+              <AccordionCol title="Dedicated Hosting">
+                <ul className="space-y-1">{dedicatedLinks.map(l => <li key={l.label}><FLink {...l} /></li>)}</ul>
+              </AccordionCol>
+              <AccordionCol title="VPS Hosting">
+                <ul className="space-y-1">{vpsLinks.map(l => <li key={l.label}><FLink {...l} /></li>)}</ul>
+              </AccordionCol>
             </div>
-            <div>
-              <ColHead>VPS Hosting</ColHead>
-              <ul className="space-y-1">{vpsLinks.map(l => <li key={l.label}><FLink {...l} /></li>)}</ul>
-            </div>
-          </div>
 
-          {/* Quick Links */}
-          <div>
-            <ColHead>Quick Links</ColHead>
-            <ul className="space-y-1">{quickLinks.map(l => <li key={l.label}><FLink {...l} /></li>)}</ul>
-          </div>
+            {/* Quick Links */}
+            <AccordionCol title="Quick Links">
+              <ul className="space-y-1">{quickLinks.map(l => <li key={l.label}><FLink {...l} /></li>)}</ul>
+            </AccordionCol>
 
-          {/* Useful Links */}
-          <div>
-            <ColHead>Useful Links</ColHead>
-            <ul className="space-y-1">{usefulLinks.map(l => <li key={l.label}><FLink {...l} /></li>)}</ul>
-          </div>
+            {/* Useful Links */}
+            <AccordionCol title="Useful Links">
+              <ul className="space-y-1">{usefulLinks.map(l => <li key={l.label}><FLink {...l} /></li>)}</ul>
+            </AccordionCol>
 
+          </div>
         </div>
       </div>
 
       {/* ── Bottom bar ── */}
       <div className="border-t border-white/8" style={{ background: "rgba(0,0,0,0.5)" }}>
         <div className="max-w-7xl mx-auto px-4 py-4 flex flex-col md:flex-row justify-between items-center gap-3">
-          <p className="text-[#3d4759] text-xs">
+          <p className="text-[#3d4759] text-xs text-center md:text-left">
             © 2009–{year} <span className="text-[#5a6475]">Hostao LLC.</span> All Rights Reserved.
           </p>
           <div className="flex flex-wrap justify-center items-center gap-x-4 gap-y-1">
