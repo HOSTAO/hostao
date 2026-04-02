@@ -271,10 +271,35 @@ export default function SharedHostingPage() {
             "name": "Shared Web Hosting",
             "description": "Affordable shared hosting with NVMe SSD, free SSL, cPanel, and 99.9% uptime",
             "brand": { "@type": "Brand", "name": "Hostao" },
+            "url": "https://hostao.com/shared-hosting/",
             "offers": [
-              { "@type": "Offer", "name": "Basic Plan", "price": "3.00", "priceCurrency": "USD", "availability": "https://schema.org/InStock" },
-              { "@type": "Offer", "name": "Professional Plan", "price": "4.50", "priceCurrency": "USD", "availability": "https://schema.org/InStock" },
-              { "@type": "Offer", "name": "Business Plan", "price": "6.00", "priceCurrency": "USD", "availability": "https://schema.org/InStock" },
+              {
+                "@type": "Offer",
+                "name": "Basic Plan",
+                "price": "3.00",
+                "priceCurrency": "USD",
+                "priceSpecification": { "@type": "UnitPriceSpecification", "price": "3.00", "priceCurrency": "USD", "unitText": "month" },
+                "availability": "https://schema.org/InStock",
+                "url": "https://hostao.com/shared-hosting/"
+              },
+              {
+                "@type": "Offer",
+                "name": "Professional Plan",
+                "price": "4.50",
+                "priceCurrency": "USD",
+                "priceSpecification": { "@type": "UnitPriceSpecification", "price": "4.50", "priceCurrency": "USD", "unitText": "month" },
+                "availability": "https://schema.org/InStock",
+                "url": "https://hostao.com/shared-hosting/"
+              },
+              {
+                "@type": "Offer",
+                "name": "Business Plan",
+                "price": "6.00",
+                "priceCurrency": "USD",
+                "priceSpecification": { "@type": "UnitPriceSpecification", "price": "6.00", "priceCurrency": "USD", "unitText": "month" },
+                "availability": "https://schema.org/InStock",
+                "url": "https://hostao.com/shared-hosting/"
+              }
             ]
           })
         }}
@@ -285,6 +310,32 @@ export default function SharedHostingPage() {
         "itemListElement": [
           { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://hostao.com" },
           { "@type": "ListItem", "position": 2, "name": "Shared Hosting", "item": "https://hostao.com/shared-hosting" }
+        ]
+      }) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What is shared hosting?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Shared hosting is a type of web hosting where multiple websites are hosted on a single server, sharing resources like CPU, RAM, and storage space. It's the most affordable hosting option, perfect for small to medium-sized websites." }
+          },
+          {
+            "@type": "Question",
+            "name": "Is shared hosting suitable for my business website?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Yes, shared hosting is perfect for small businesses, blogs, portfolios, and startup websites. Our plans include everything you need to get online, including cPanel, email accounts, and free SSL certificates." }
+          },
+          {
+            "@type": "Question",
+            "name": "Do you provide free website migration?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Yes, we offer free website migration from your current hosting provider. Our technical team will handle the entire process to ensure zero downtime during the transfer." }
+          },
+          {
+            "@type": "Question",
+            "name": "What's included in your shared hosting plans?",
+            "acceptedAnswer": { "@type": "Answer", "text": "All our shared hosting plans include NVMe SSD storage, free SSL certificates, cPanel control panel, Softaculous auto-installer, email accounts, 24/7 support, and 99.9% uptime guarantee." }
+          }
         ]
       }) }} />
 

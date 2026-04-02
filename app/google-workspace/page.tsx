@@ -35,7 +35,7 @@ const PLANS = [
       "INR billing + GST invoice",
     ],
     cta: "Get Started",
-    href: "https://my.hostao.com/cart.php?a=add&pid=google-ws-starter",
+    href: "https://wa.me/917470111222?text=Hi%20Hostao%2C%20I%27m%20interested%20in%20Google%20Workspace%20Business%20Starter%20for%20my%20business.%20Please%20help%20me%20get%20started.",
   },
   {
     name: "Business Standard",
@@ -56,7 +56,7 @@ const PLANS = [
       "Advanced spam protection",
     ],
     cta: "Get Business Standard",
-    href: "https://my.hostao.com/cart.php?a=add&pid=google-ws-standard",
+    href: "https://wa.me/917470111222?text=Hi%20Hostao%2C%20I%27m%20interested%20in%20Google%20Workspace%20Business%20Standard%20plan.%20Please%20help%20me%20get%20started.",
   },
   {
     name: "Business Plus",
@@ -77,7 +77,7 @@ const PLANS = [
       "Priority support",
     ],
     cta: "Get Business Plus",
-    href: "https://my.hostao.com/cart.php?a=add&pid=google-ws-plus",
+    href: "https://wa.me/917470111222?text=Hi%20Hostao%2C%20I%27m%20interested%20in%20Google%20Workspace%20Business%20Plus%20plan.%20Please%20help%20me%20get%20started.",
   },
 ];
 
@@ -213,8 +213,8 @@ export default function GoogleWorkspacePage() {
             Stop using personal Gmail for work. Get a professional <strong>@yourcompany.com</strong> email with Google Meet, Drive, Docs & more. INR billing, GST invoice, free migration, 24/7 local support.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-10">
-            <a href="https://my.hostao.com/cart.php?a=add&pid=google-workspace" className="btn-hostao-primary text-lg font-bold px-10 py-4">Get Google Workspace →</a>
-            <a href="https://wa.me/message/hostao" className="btn-hostao-outline text-lg px-10 py-4">Talk to Sales on WhatsApp</a>
+            <a href="https://wa.me/917470111222?text=Hi%20Hostao%2C%20I%27m%20interested%20in%20Google%20Workspace%20for%20my%20business.%20Please%20share%20the%20best%20plan%20for%20me." className="btn-hostao-primary text-lg font-bold px-10 py-4">Get Google Workspace →</a>
+            <a href="https://wa.me/917470111222?text=Hi%20Hostao%2C%20I%20want%20to%20know%20more%20about%20Google%20Workspace%20plans%20for%20my%20business." className="btn-hostao-outline text-lg px-10 py-4">Talk to Sales on WhatsApp</a>
           </div>
           <div className="flex flex-wrap justify-center gap-6 text-sm text-[#334155]">
             {["✅ INR Billing", "✅ GST Invoice", "✅ Free Migration", "✅ 14-Day Trial", "✅ 24/7 India Support"].map(f => (
@@ -395,10 +395,10 @@ export default function GoogleWorkspacePage() {
           <h2 className="text-3xl font-bold text-[#1e293b] mb-4">Ready to Go Professional?</h2>
           <p className="text-[#334155] mb-8 text-lg">Start your 14-day free trial today. No credit card required. INR billing, GST invoice, free migration included.</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="https://my.hostao.com/cart.php?a=add&pid=google-workspace" target="_blank" rel="noopener noreferrer" className="btn-hostao-primary text-lg font-bold px-10 py-4">
+            <a href="https://wa.me/917470111222?text=Hi%20Hostao%2C%20I%27d%20like%20to%20start%20a%20Google%20Workspace%20free%20trial.%20Please%20guide%20me." target="_blank" rel="noopener noreferrer" className="btn-hostao-primary text-lg font-bold px-10 py-4">
               Start Free Trial →
             </a>
-            <a href="https://wa.me/message/hostao" target="_blank" rel="noopener noreferrer" className="btn-hostao-outline text-lg px-10 py-4">
+            <a href="https://wa.me/917470111222?text=Hi%20Hostao%2C%20I%20want%20to%20know%20more%20about%20Google%20Workspace%20for%20my%20business." target="_blank" rel="noopener noreferrer" className="btn-hostao-outline text-lg px-10 py-4">
               💬 WhatsApp Us
             </a>
           </div>

@@ -24,8 +24,9 @@ export const metadata: Metadata = {
     type: "website",
     images: [{
       url: "/images/hostao-og.png",
-      width: 200,
-      height: 200,
+      width: 1200,
+      height: 630,
+      alt: "Hostao - Fast & Affordable Web Hosting",
     }],
   },
   twitter: {
@@ -132,36 +133,41 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           data-cf-beacon='{"token":"3fea44721b6d4734a2246113203adda4"}'
         />
 
-        {/* Schema Markup for Organization */}
-        <Script id="schema-organization" type="application/ld+json">
+        {/* JSON-LD: Organization + WebSite schema */}
+        <Script id="org-schema" type="application/ld+json" strategy="beforeInteractive">
           {JSON.stringify({
             "@context": "https://schema.org",
-            "@type": ["Organization", "Place"],
-            "name": "Hostao LLC",
-            "alternateName": "Hostao",
-            "url": "https://hostao.com/",
-            "logo": {
-              "@type": "ImageObject",
-              "url": "https://hostao.com/wp-content/uploads/2024/01/Dark-new.png",
-              "width": 1000,
-              "height": 343
-            },
-            "sameAs": [
-              "https://www.facebook.com/hostao",
-              "https://x.com/HostaoOfficial",
-              "https://www.instagram.com/hostao/",
-              "https://github.com/hostao",
-              "https://www.reddit.com/r/Hostao",
-              "https://wa.me/+919467000111",
-              "https://www.youtube.com/@HOSTAO",
-              "https://discord.gg/RUXwXTWFpU"
-            ],
-            "openingHoursSpecification": {
-              "@type": "OpeningHoursSpecification",
-              "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
-              "opens": "00:00",
-              "closes": "23:59"
-            }
+            "@graph": [
+              {
+                "@type": "Organization",
+                "@id": "https://hostao.com/#organization",
+                "name": "Hostao",
+                "url": "https://hostao.com",
+                "logo": { "@type": "ImageObject", "url": "https://hostao.com/images/hostao-logo.png" },
+                "sameAs": [
+                  "https://twitter.com/HostaoOfficial",
+                  "https://www.facebook.com/hostao",
+                  "https://www.instagram.com/hostao/",
+                  "https://github.com/hostao",
+                  "https://www.reddit.com/r/Hostao",
+                  "https://www.youtube.com/@HOSTAO",
+                  "https://discord.gg/RUXwXTWFpU"
+                ],
+                "contactPoint": { "@type": "ContactPoint", "telephone": "+1-323-744-7383", "contactType": "customer support" }
+              },
+              {
+                "@type": "WebSite",
+                "@id": "https://hostao.com/#website",
+                "url": "https://hostao.com",
+                "name": "Hostao",
+                "publisher": { "@id": "https://hostao.com/#organization" },
+                "potentialAction": {
+                  "@type": "SearchAction",
+                  "target": { "@type": "EntryPoint", "urlTemplate": "https://hostao.com/domain-registration?search={search_term_string}" },
+                  "query-input": "required name=search_term_string"
+                }
+              }
+            ]
           })}
         </Script>
 

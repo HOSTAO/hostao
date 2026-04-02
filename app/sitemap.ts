@@ -1,6 +1,21 @@
 import { MetadataRoute } from "next";
+import fs from "fs";
+import path from "path";
 
 const BASE = "https://hostao.com";
+
+function getBlogPosts() {
+  try {
+    const file = path.join(process.cwd(), "posts-data", "posts-clean.json");
+    const posts = JSON.parse(fs.readFileSync(file, "utf-8")) as Array<{slug: string; date: string}>;
+    return posts.map(p => ({
+      url: `${BASE}/blog/${p.slug}/`,
+      lastModified: new Date(p.date),
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
+    }));
+  } catch { return []; }
+}
 
 const PAGES = [
   { url: "/", priority: 1.0, changeFrequency: "daily" },
@@ -89,10 +104,11 @@ const PAGES = [
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  return PAGES.map(page => ({
+  const staticPages = PAGES.map(page => ({
     url: `${BASE}${page.url}`,
     lastModified: new Date(),
     changeFrequency: page.changeFrequency as MetadataRoute.Sitemap[0]["changeFrequency"],
     priority: page.priority,
   }));
+  return [...staticPages, ...getBlogPosts()];
 }

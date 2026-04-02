@@ -133,7 +133,7 @@ export default function HomePage() {
               </div>
               <CountdownTimer className="mb-6" label="Offer ends in:" />
               <p className="text-sm text-[#334155] mb-6">*Available exclusively for Hostao reseller account holders</p>
-              <a href="https://my.hostao.com/cart.php?a=add&pid=vps-reseller" target="_blank" rel="noopener noreferrer" className="btn-hostao-primary text-lg font-bold px-10 py-4">
+              <a href="https://my.hostao.com/store/reseller" target="_blank" rel="noopener noreferrer" className="btn-hostao-primary text-lg font-bold px-10 py-4">
                 Get This Deal
               </a>
             </div>

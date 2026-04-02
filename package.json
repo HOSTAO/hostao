@@ -16,6 +16,7 @@
     "@payloadcms/plugin-seo": "^3.78.0",
     "@payloadcms/richtext-lexical": "^3.78.0",
     "@tailwindcss/typography": "^0.5.19",
+    "@vercel/blob": "^2.3.2",
     "appwrite": "^24.0.0",
     "graphql": "^16.13.1",
     "next": "^15.5.12",

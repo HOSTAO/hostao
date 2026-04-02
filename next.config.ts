@@ -12,7 +12,7 @@ const nextConfig: NextConfig = {
       { protocol: "https", hostname: "hostao.com" },
       { protocol: "https", hostname: "*.neon.tech" },
     ],
-    unoptimized: true,
+    unoptimized: false,
   },
   trailingSlash: true,
   async redirects() {

@@ -42,6 +42,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: `${post.title} | Hostao Blog`,
     description: post.excerpt,
+    authors: [{ name: "Hostao Editorial Team" }],
     openGraph: {
       title: post.title,
       description: post.excerpt,
@@ -49,11 +50,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       siteName: "Hostao",
       type: "article",
       publishedTime: post.date,
+      images: [{ url: `/images/blog-og.png`, width: 1200, height: 630 }],
     },
     twitter: {
       card: "summary_large_image",
       title: post.title,
       description: post.excerpt,
+      images: ["/images/blog-og.png"],
     },
     alternates: { canonical: `https://hostao.com/blog/${post.slug}/` },
   };
@@ -120,21 +123,18 @@ export default async function BlogPostPage({ params }: Props) {
 
   const structuredData = {
     "@context": "https://schema.org",
-    "@type": "BlogPosting",
+    "@type": "Article",
     headline: post.title,
     description: post.excerpt,
     datePublished: post.date,
     dateModified: post.date,
-    author: {
-      "@type": "Organization",
-      name: "Hostao",
-      url: "https://hostao.com",
-    },
+    url: `https://hostao.com/blog/${post.slug}/`,
     publisher: {
       "@type": "Organization",
-      name: "Hostao LLC",
-      logo: { "@type": "ImageObject", url: "https://hostao.com/wp-content/uploads/2024/01/Dark-new.png" },
+      name: "Hostao",
+      logo: { "@type": "ImageObject", url: "https://hostao.com/images/hostao-logo.png" },
     },
+    author: { "@type": "Organization", name: "Hostao" },
     mainEntityOfPage: { "@type": "WebPage", "@id": `https://hostao.com/blog/${post.slug}/` },
   };
 

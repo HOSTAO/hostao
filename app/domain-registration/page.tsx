@@ -332,6 +332,46 @@ export default function DomainRegistrationPage() {
       {/* ── TRUST BAR ──────────────────────────────────────── */}
       <TrustBar />
 
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://hostao.com" },
+          { "@type": "ListItem", "position": 2, "name": "Domain Registration", "item": "https://hostao.com/domain-registration" }
+        ]
+      }) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What is domain registration?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Domain registration is the process of acquiring a unique web address (like yourname.com) for your website. It gives you the right to use that domain name for a specific period (usually 1 year) and can be renewed." }
+          },
+          {
+            "@type": "Question",
+            "name": "How long does domain registration take?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Domain registration is typically instant for most extensions. Once payment is confirmed, your domain is usually active within minutes and ready to use." }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I transfer my existing domain to Hostao?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Yes, you can transfer your domain from another registrar to Hostao. Domain transfers usually take 5-7 days to complete and extend your registration by 1 year." }
+          },
+          {
+            "@type": "Question",
+            "name": "Do you offer domain privacy protection?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Yes, we offer WHOIS privacy protection to keep your personal information private in the domain registration database. This helps protect against spam and unwanted contact." }
+          },
+          {
+            "@type": "Question",
+            "name": "What payment methods do you accept?",
+            "acceptedAnswer": { "@type": "Answer", "text": "We accept all major credit cards, PayPal, bank transfers, and various other payment methods depending on your location." }
+          }
+        ]
+      }) }} />
+
     </div>
   );
 }
