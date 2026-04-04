@@ -134,10 +134,10 @@ function NewsletterForm() {
     if (!email) return;
     setStatus("loading");
     try {
-      const res = await fetch("https://bestemail-platform.vercel.app/api/forms/hostao-newsletter/submit", {
+      const res = await fetch("https://bestemail.in/api/newsletter/subscribe", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email }),
+        body: JSON.stringify({ email, source: 'hostao' }),
       });
       if (res.ok) {
         setStatus("success");
