@@ -2,17 +2,15 @@ import { withPayload } from "@payloadcms/next/withPayload";
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  experimental: {
-    workerThreads: false,
-    cpus: 1,
-  },
+  allowedDevOrigins: ["*.trycloudflare.com"],
+  poweredByHeader: false,
   reactStrictMode: false, // Disable strict mode to prevent double rendering
   images: {
     remotePatterns: [
       { protocol: "https", hostname: "hostao.com" },
       { protocol: "https", hostname: "*.neon.tech" },
     ],
-    unoptimized: false,
+    unoptimized: true,
   },
   trailingSlash: true,
   async redirects() {
@@ -23,6 +21,28 @@ const nextConfig: NextConfig = {
       { source: "/contact", destination: "/contact-us", permanent: true },
       { source: "/terms", destination: "/terms-of-service", permanent: true },
       { source: "/privacy", destination: "/privacy-policy", permanent: true },
+    ];
+  },
+  async headers() {
+    return [
+      {
+        source: "/images/:all*",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=31536000, immutable",
+          },
+        ],
+      },
+      {
+        source: "/favicon.ico",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=31536000, immutable",
+          },
+        ],
+      },
     ];
   },
 };

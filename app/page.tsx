@@ -1,12 +1,10 @@
-"use client";
-
-import { useState, useEffect } from "react";
 import Link from "next/link";
 import DomainSearch from "@/components/DomainSearch";
 import RatingeReviewsWidget from "@/components/RatingeReviewsWidget";
 import CountdownTimer from "@/components/CountdownTimer";
 import TypingHero from "@/components/TypingHero";
 import TrustBar from "@/components/TrustBar";
+import HomeFaq from "@/components/HomeFaq";
 
 
 
@@ -70,8 +68,6 @@ const WHY_FEATURES = [
 ];
 
 export default function HomePage() {
-  const [openFaq, setOpenFaq] = useState<number | null>(null);
-
   return (
     <div>
 
@@ -96,8 +92,15 @@ export default function HomePage() {
             {/* Right: Girl image */}
             <div className="flex justify-center">
               <img
-                src="/images/hostao-llc-2.png"
+                src="/images/hostao-llc-2-700.webp"
+                srcSet="/images/hostao-llc-2-480.webp 480w, /images/hostao-llc-2-700.webp 700w"
+                sizes="(max-width: 768px) 92vw, 448px"
                 alt="Hostao web hosting - fast and affordable hosting plans"
+                width={700}
+                height={700}
+                loading="eager"
+                fetchPriority="high"
+                decoding="async"
                 className="w-full max-w-md h-auto"
               />
             </div>
@@ -116,7 +119,17 @@ export default function HomePage() {
           </h3>
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="flex justify-center order-2 md:order-1">
-              <img src="/images/corporate-man-35.png" alt="Hostao reseller hosting - 50% discount" className="w-full max-w-md h-auto" />
+              <img
+                src="/images/corporate-man-35-700.webp"
+                srcSet="/images/corporate-man-35-480.webp 480w, /images/corporate-man-35-700.webp 700w"
+                sizes="(max-width: 768px) 92vw, 448px"
+                alt="Hostao reseller hosting - 50% discount"
+                width={700}
+                height={935}
+                loading="lazy"
+                decoding="async"
+                className="w-full max-w-md h-auto"
+              />
             </div>
             <div className="order-1 md:order-2">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-4 mb-8">
@@ -142,7 +155,7 @@ export default function HomePage() {
       </section>
 
       {/* SECTION 4: PRICING PLAN (hero gradient bg) */}
-      <section className="hero-gradient-bg py-20 px-4">
+      <section id="pricing" className="hero-gradient-bg py-20 px-4">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-2">
             <p className="text-[#334155] text-sm uppercase tracking-widest font-medium">PRICING PLAN</p>
@@ -184,17 +197,17 @@ export default function HomePage() {
         <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-8">
           <div className="border-2 border-[#1e293b] rounded-2xl p-8 flex flex-col md:flex-row items-center gap-6">
             <div className="flex-shrink-0">
-              <img src="/images/banner-separator-1.png" alt="Domain offer" className="w-32 h-auto" />
+              <img src="/images/banner-separator-1-256.webp" alt="Domain offer" width={256} height={119} loading="lazy" decoding="async" className="w-32 h-auto" />
             </div>
             <div>
               <h2 className="text-2xl font-bold mb-3 text-[#1e293b]">Exclusive Domain Offer</h2>
               <p className="text-[#334155] mb-6">Get great deals on domain registrations! Find the perfect web address for your business or project at discounted prices. Don&apos;t miss our limited-time offers and secure your online identity today!</p>
-              <a href="/offers" className="btn-hostao-outline">Get Offer</a>
+              <a href="/latest-offers" className="btn-hostao-outline">Get Offer</a>
             </div>
           </div>
           <div className="border-2 border-[#1e293b] rounded-2xl p-8 flex flex-col md:flex-row items-center gap-6">
             <div className="flex-shrink-0">
-              <img src="/images/corporate-man-35.png" alt="Reseller discount" className="w-32 h-auto rounded-lg" />
+              <img src="/images/corporate-man-35-thumb.webp" alt="Reseller discount" width={256} height={342} loading="lazy" decoding="async" className="w-32 h-auto rounded-lg" />
             </div>
             <div>
               <h2 className="text-2xl font-bold mb-3 text-[#1e293b]">50% Off Reseller Discount!</h2>
@@ -253,32 +266,13 @@ export default function HomePage() {
           <div className="grid md:grid-cols-3 gap-8 mb-20">
             {featureCards.map((card, i) => (
               <div key={i} className="bg-[#F0F5FA] rounded-2xl p-8 shadow-sm hover:shadow-lg transition-shadow text-center">
-                <img src={card.img} alt={card.title} width={80} height={80} className="mx-auto mb-4 w-20 h-20 object-contain" />
+                <img src={card.img} alt={card.title} width={80} height={80} loading="lazy" decoding="async" className="mx-auto mb-4 w-20 h-20 object-contain" />
                 <h3 className="text-xl font-bold mb-3 text-[#1e293b]">{card.title}</h3>
                 <p className="text-[#334155]">{card.desc}</p>
               </div>
             ))}
           </div>
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl font-bold text-center mb-8 text-[#1e293b]">Frequently Asked Questions</h2>
-            <div className="space-y-3">
-              {faqData.map((faq, index) => (
-                <div key={index} className="border border-gray-200 rounded-xl overflow-hidden">
-                  <button onClick={() => setOpenFaq(openFaq === index ? null : index)} className="w-full px-6 py-4 text-left bg-[#F0F5FA] hover:bg-[#e6f2ff] transition-colors flex items-center justify-between group">
-                    <span className="font-semibold text-[#1e293b]">{faq.q}</span>
-                    <svg className={`w-5 h-5 text-[#046bd2] transition-transform duration-300 flex-shrink-0 ml-4 ${openFaq === index ? "rotate-180" : ""}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                    </svg>
-                  </button>
-                  {openFaq === index && (
-                    <div className="px-6 py-4 bg-white">
-                      <p className="text-[#334155]">{faq.a}</p>
-                    </div>
-                  )}
-                </div>
-              ))}
-            </div>
-          </div>
+          <HomeFaq items={faqData} />
         </div>
       </section>
 
@@ -287,16 +281,13 @@ export default function HomePage() {
         <div className="max-w-6xl mx-auto">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="flex justify-center">
-              <img src="/images/Hosting3.png" alt="Why choose Hostao web hosting services" className="w-full max-w-md h-auto" />
+              <img src="/images/hosting3-500.webp" alt="Hostao web hosting and reseller infrastructure" width={500} height={500} loading="lazy" decoding="async" className="w-full max-w-md h-auto" />
             </div>
             <div>
-              <p className="text-[#334155] text-sm uppercase tracking-widest font-medium mb-2">WHY CHOOSE US</p>
-              <h2 className="text-4xl md:text-5xl font-bold mb-6 text-[#1e293b]">Grow Faster By Using<br />Our Hosting Services</h2>
+              <p className="text-[#334155] text-sm uppercase tracking-widest font-medium mb-2">WHY HOSTAO</p>
+              <h2 className="text-4xl md:text-5xl font-bold mb-6 text-[#1e293b]">Built for businesses that want hosting to feel sorted</h2>
               <p className="text-[#334155] mb-8 text-lg leading-relaxed">
-                Choose Hostao for reliable and secure Low cost hosting services that are tailored
-                to your specific needs. Our advanced technology, 24/7 support, and affordable
-                pricing make us the ideal choice for individuals and businesses looking to grow
-                their online presence.
+                Hostao brings hosting, domains, reseller tools, and business-ready support paths into one cleaner system so you can launch faster, manage with less friction, and scale without stitching together too many vendors.
               </p>
               <div className="grid grid-cols-2 gap-4 mb-8">
                 {WHY_FEATURES.map(feat => (
@@ -310,7 +301,10 @@ export default function HomePage() {
                   </div>
                 ))}
               </div>
-              <Link href="/about-us" className="btn-hostao-primary text-lg font-bold">About Us</Link>
+              <div className="flex flex-col sm:flex-row gap-3">
+                <Link href="/about-us" className="btn-hostao-primary text-lg font-bold">About Hostao</Link>
+                <Link href="/contact-us" className="btn-hostao-outline text-lg">Talk to Hostao</Link>
+              </div>
             </div>
           </div>
         </div>
@@ -330,11 +324,11 @@ export default function HomePage() {
       <section className="bg-[#F0F5FA] py-10 px-4 border-b border-[#D1D5DB]">
         <div className="max-w-6xl mx-auto">
           <div className="flex flex-nowrap justify-center items-center gap-10 overflow-x-auto">
-            <img src="/images/cloudfare.webp" alt="Cloudflare" className="h-10 object-contain flex-shrink-0" />
-            <img src="/images/lightspeed.webp" alt="LiteSpeed" className="h-10 object-contain flex-shrink-0" />
-            <img src="/images/jetbackup.webp" alt="JetBackup" className="h-10 object-contain flex-shrink-0" />
-            <img src="/images/google-cloud.webp" alt="Google Cloud" className="h-10 object-contain flex-shrink-0" />
-            <img src="/images/wordpress.webp" alt="WordPress" className="h-10 object-contain flex-shrink-0" />
+            <img src="/images/cloudfare.webp" alt="Cloudflare" width={224} height={32} loading="lazy" decoding="async" className="h-10 w-auto object-contain flex-shrink-0" />
+            <img src="/images/lightspeed.webp" alt="LiteSpeed" width={119} height={38} loading="lazy" decoding="async" className="h-10 w-auto object-contain flex-shrink-0" />
+            <img src="/images/jetbackup.webp" alt="JetBackup" width={112} height={30} loading="lazy" decoding="async" className="h-10 w-auto object-contain flex-shrink-0" />
+            <img src="/images/google-cloud.webp" alt="Google Cloud" width={192} height={38} loading="lazy" decoding="async" className="h-10 w-auto object-contain flex-shrink-0" />
+            <img src="/images/wordpress.webp" alt="WordPress" width={133} height={30} loading="lazy" decoding="async" className="h-10 w-auto object-contain flex-shrink-0" />
           </div>
         </div>
       </section>
@@ -347,7 +341,7 @@ export default function HomePage() {
             "@type": "Organization",
             "name": "Hostao",
             "url": "https://hostao.com",
-            "logo": "https://hostao.com/images/hostao-logo.webp",
+            "logo": "https://hostao.com/images/hostao-logo-300.webp",
             "description": "Affordable web hosting, domain registration, reseller hosting, and VPS hosting provider",
             "contactPoint": {
               "@type": "ContactPoint",

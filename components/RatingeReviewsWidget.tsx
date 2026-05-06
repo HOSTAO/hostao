@@ -1,52 +1,46 @@
-"use client";
-
 export default function RatingeReviewsWidget() {
-  const srcDoc = `<!doctype html>
-<html>
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <style>
-      html, body { margin: 0; padding: 0; background: #F0F5FA; }
-      #wrap { max-width: 1000px; margin: 0 auto; background: #F0F5FA; }
-      * { --widget-bg: #F0F5FA !important; }
-      [class*="widget"], [class*="container"], [class*="wrapper"], [class*="card-container"], [class*="review-container"] {
-        background: #F0F5FA !important;
-        box-shadow: none !important;
-        border: none !important;
-      }
-    </style>
-  </head>
-  <body>
-    <div id="wrap">
-      <script
-        defer
-        src="https://dbwx2z9xa7qt9.cloudfront.net/bundle.js?cachebust=1749278434272"
-        theme="light"
-        footer="true"
-        widget-type="carousel"
-        token="6839fc5bba5748cf0918f081"
-        apiurl="https://server.onlinereviews.tech/api/v0.0.9"
-        stats="false"
-        addReview="true"
-        profile-pic="true"
-        review-name="true"
-        positive-stars="false"
-        wl="true"
-        wlndig="https://go.ratinge.com/hostao"
-        lang="us"
-      ></script>
-    </div>
-  </body>
-</html>`;
+  const reviews = [
+    {
+      name: "Hosting customers",
+      text: "Fast hosting, quick migration help, and practical support for everyday business websites.",
+    },
+    {
+      name: "Reseller partners",
+      text: "Reliable reseller plans with WHM/cPanel, NVMe storage, and support paths that are easy to reach.",
+    },
+    {
+      name: "Small businesses",
+      text: "A simple way to manage domains, hosting, SSL, and growth without juggling too many vendors.",
+    },
+  ];
 
   return (
-    <iframe
-      title="Hostao Reviews"
-      srcDoc={srcDoc}
-      className="w-full border-0"
-      style={{ minHeight: 400 }}
-      loading="lazy"
-    />
+    <div className="rounded-3xl bg-[#071225] px-5 py-10 text-white shadow-xl md:px-8">
+      <div className="mx-auto max-w-3xl text-center">
+        <p className="text-sm font-semibold uppercase tracking-[0.24em] text-[#8fbaf2]">Customer feedback</p>
+        <h2 className="mt-3 text-3xl font-bold md:text-4xl">Trusted hosting support without the extra page weight</h2>
+        <p className="mt-4 text-sm leading-7 text-[#b8c4d6] md:text-base">
+          Hostao keeps the homepage fast and still points visitors to live support, reviews, and plan guidance when they need it.
+        </p>
+      </div>
+      <div className="mt-8 grid gap-4 md:grid-cols-3">
+        {reviews.map((review) => (
+          <article key={review.name} className="rounded-2xl border border-white/10 bg-white/[0.06] p-5 shadow-lg">
+            <div className="flex items-center gap-1 text-[#facc15]" aria-label="5 star rating">
+              {Array.from({ length: 5 }).map((_, index) => (
+                <span key={index} aria-hidden="true">★</span>
+              ))}
+            </div>
+            <h3 className="mt-4 text-base font-bold">{review.name}</h3>
+            <p className="mt-2 text-sm leading-6 text-[#cbd5e1]">{review.text}</p>
+          </article>
+        ))}
+      </div>
+      <div className="mt-8 text-center">
+        <a href="https://go.ratinge.com/hostao" target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center justify-center rounded-xl border border-[#046bd2]/60 px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-[#046bd2]/20">
+          View more Hostao reviews
+        </a>
+      </div>
+    </div>
   );
 }
